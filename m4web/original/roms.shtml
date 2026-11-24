@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+
+<style type="text/css">
+body
+{
+	font-family: 'cpc';
+}
+</style><title>Roms</title></head>
+
+<body bgcolor="navy"><center><font color="#ffffff"><h2>Roms</h2></font></center>
+<center>
+<div class="headers">
+<table>
+<td><a href="files.shtml" class="myButton">Files</a></td>
+<td><a href="roms.shtml" class="myButton">Roms</a></td>
+<td><a href="control.shtml" class="myButton">Control</a></td>
+<td><a href="settings.shtml" class="myButton">Settings</a></td>
+</table></div></center>
+
+<br>
+<center>
+<font color="#ffffff">
+<h2><center>M4 Rom Config</center></h2>
+<br>
+<div class="container">
+<table>
+<tr><td>Enabled</td><td><form method="get" action="/checkbox2.cgi"><!--#m4en--><input checked type="checkbox" name="m4en"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>Rom number</td><td><form method="get" action="/config.cgi"><!--#m4rm--><input value="6" type="Text" name="m4rm"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>Romboard start</td><td><form method="get" action="/config.cgi"><!--#m4rb--><input value="0" type="Text" name="m4rb"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>Lower-rom Enabled</td><td><form method="get" action="/checkbox3.cgi"><!--#lwen--><input checked type="checkbox" name="lwen"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>Lower-rom slot</td><td><form method="get" action="/config.cgi"><!--#lwsl--><input value="31" type="Text" name="lwsl"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>Use only 16 slots</td><td><form method="get" action="/checkbox4.cgi"><!--#rs16--><input type="checkbox" name="rs16"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+</table>
+<br><br>
+<h2><center>Cartridge (256KB/512KB)</center></h2>
+<br>
+<div class="roms">
+<table width = "100%">
+<tr><td width ="30%">Cartridge</td><td width ="50%"></td><td width ="20%"><a href="uploadctr.shtml?slot=48" class="rB">Upload</td></tr>
+
+</table>
+</div>
+
+<br><br>
+<h2><center>Rom board</center></h2>
+<br>
+<div class="roms">
+<table width = "100%">
+<tr><td width ="30%">Rom slot 0</td><td width ="50%"><!--#romn-->BASIC 1.1</td><td width ="20%"><a href="roms.shtml?rmsl=0" class="rB">Remove<a href="uploadrom.shtml?slot=0" class="rB">Upload</td></tr>
+<tr><td>Rom slot 1</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=1" class="rB">Remove<a href="uploadrom.shtml?slot=1" class="rB">Upload</td></tr>
+<tr><td>Rom slot 2</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=2" class="rB">Remove<a href="uploadrom.shtml?slot=2" class="rB">Upload</td></tr>
+<tr><td>Rom slot 3</td><td><!--#romn-->M4FE Fronted</td><td><a href="roms.shtml?rmsl=3" class="rB">Remove<a href="uploadrom.shtml?slot=3" class="rB">Upload</td></tr>
+<tr><td>Rom slot 4</td><td><!--#romn-->RULEZ</td><td><a href="roms.shtml?rmsl=4" class="rB">Remove<a href="uploadrom.shtml?slot=4" class="rB">Upload</td></tr>
+<tr><td>Rom slot 5</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=5" class="rB">Remove<a href="uploadrom.shtml?slot=5" class="rB">Upload</td></tr>
+<tr><td>Rom slot 6</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=6" class="rB">Remove<a href="uploadrom.shtml?slot=6" class="rB">Upload</td></tr>
+<tr><td>Rom slot 7</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=7" class="rB">Remove<a href="uploadrom.shtml?slot=7" class="rB">Upload</td></tr>
+<tr><td>Rom slot 8</td><td><!--#romn-->AMSDOS</td><td><a href="roms.shtml?rmsl=8" class="rB">Remove<a href="uploadrom.shtml?slot=8" class="rB">Upload</td></tr>
+<tr><td>Rom slot 9</td><td><!--#romn-->YANCC</td><td><a href="roms.shtml?rmsl=9" class="rB">Remove<a href="uploadrom.shtml?slot=9" class="rB">Upload</td></tr>
+<tr><td>Rom slot 10</td><td><!--#romn-->LAUNCHER</td><td><a href="roms.shtml?rmsl=10" class="rB">Remove<a href="uploadrom.shtml?slot=10" class="rB">Upload</td></tr>
+<tr><td>Rom slot 11</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=11" class="rB">Remove<a href="uploadrom.shtml?slot=11" class="rB">Upload</td></tr>
+<tr><td>Rom slot 12</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=12" class="rB">Remove<a href="uploadrom.shtml?slot=12" class="rB">Upload</td></tr>
+<tr><td>Rom slot 13</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=13" class="rB">Remove<a href="uploadrom.shtml?slot=13" class="rB">Upload</td></tr>
+<tr><td>Rom slot 14</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=14" class="rB">Remove<a href="uploadrom.shtml?slot=14" class="rB">Upload</td></tr>
+<tr><td>Rom slot 15</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=15" class="rB">Remove<a href="uploadrom.shtml?slot=15" class="rB">Upload</td></tr>
+<tr><td>Rom slot 16</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=16" class="rB">Remove<a href="uploadrom.shtml?slot=16" class="rB">Upload</td></tr>
+<tr><td>Rom slot 17</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=17" class="rB">Remove<a href="uploadrom.shtml?slot=17" class="rB">Upload</td></tr>
+<tr><td>Rom slot 18</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=18" class="rB">Remove<a href="uploadrom.shtml?slot=18" class="rB">Upload</td></tr>
+<tr><td>Rom slot 19</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=19" class="rB">Remove<a href="uploadrom.shtml?slot=19" class="rB">Upload</td></tr>
+<tr><td>Rom slot 20</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=20" class="rB">Remove<a href="uploadrom.shtml?slot=20" class="rB">Upload</td></tr>
+<tr><td>Rom slot 21</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=21" class="rB">Remove<a href="uploadrom.shtml?slot=21" class="rB">Upload</td></tr>
+<tr><td>Rom slot 22</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=22" class="rB">Remove<a href="uploadrom.shtml?slot=22" class="rB">Upload</td></tr>
+<tr><td>Rom slot 23</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=23" class="rB">Remove<a href="uploadrom.shtml?slot=23" class="rB">Upload</td></tr>
+<tr><td>Rom slot 24</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=24" class="rB">Remove<a href="uploadrom.shtml?slot=24" class="rB">Upload</td></tr>
+<tr><td>Rom slot 25</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=25" class="rB">Remove<a href="uploadrom.shtml?slot=25" class="rB">Upload</td></tr>
+<tr><td>Rom slot 26</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=26" class="rB">Remove<a href="uploadrom.shtml?slot=26" class="rB">Upload</td></tr>
+<tr><td>Rom slot 27</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=27" class="rB">Remove<a href="uploadrom.shtml?slot=27" class="rB">Upload</td></tr>
+<tr><td>Rom slot 28</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=28" class="rB">Remove<a href="uploadrom.shtml?slot=28" class="rB">Upload</td></tr>
+<tr><td>Rom slot 29</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=29" class="rB">Remove<a href="uploadrom.shtml?slot=29" class="rB">Upload</td></tr>
+<tr><td>Rom slot 30</td><td><!--#romn--></td><td><a href="roms.shtml?rmsl=30" class="rB">Remove<a href="uploadrom.shtml?slot=30" class="rB">Upload</td></tr>
+<tr><td>Rom slot 31</td><td><!--#romn-->OS6128MOD</td><td><a href="roms.shtml?rmsl=31" class="rB">Remove<a href="uploadrom.shtml?slot=31" class="rB">Upload</td></tr>
+</table>
+</div>
+</font>
+</center>
+<br>
+</body></html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+
+<style type="text/css">
+body
+{
+	font-family: 'cpc';
+}
+</style>
+
+	<title>Settings</title>
+	
+</head>
+
+<body bgcolor="navy">
+<center><font color="#ffffff"><h2>Settings</h2></font></center>
+
+<center>
+<div class="headers">
+<table>
+<td><a href="files.shtml" class="myButton">Files</a></td>
+<td><a href="roms.shtml" class="myButton">Roms</a></td>
+<td><a href="control.shtml" class="myButton">Control</a></td>
+<td><a href="settings.shtml" class="myButton">Settings</a></td>
+</table></div></center>
+
+
+<br>
+<center>
+<font color="#ffffff">
+<div class="container">
+<table>
+<tr><td></td><td><h2><center>General</center></h2></td><td></td></tr>
+<tr><td>Time/Date</td><td><!--#time-->00:00:00 2026-01-01</td>
+<td></td></tr>
+<tr><td>Timezone</td><td><form method="get" action="/config.cgi"><!--#tz--><input value="1" type="Text" name="zone"/></td>
+<td><input value="Set Zone" type="submit"></form></td></tr>
+<tr><td>NTP server</td><td><form method="get" action="/config.cgi"><!--#ntp--><input value="pool.ntp.org" type="Text" name="ntp"/></td>
+<td><input value="Set server" type="submit"></form></td></tr>
+<tr><td>Netbios name</td><td><form method="get" action="/config.cgi"><!--#name--><input value="CPC6128" type="Text" name="navn"/></td>
+<td><input value="Set name" type="submit"></form></td></tr>
+<tr><td>SSID</td><td><form method="get" action="/config.cgi"><!--#ssid--><input value="YOUR_SSID" type="Text" name="ssid"/></td>
+<td></td></tr>
+<tr><td>Password</td><td><!--#pw--><input value="" type="Text" name="pw"/></td>
+<td><input value="Set AP" type="submit"></form></td></tr>
+<tr><td></td><td><h2><center>Network</center></h2></td><td></td></tr>
+<tr><td>Use DHCP</td><td><form method="get" action="/checkbox.cgi"><!--#dhcp--><input checked type="checkbox" name="dhcp"/></td>
+<td><input value="Set" type="submit"></form></td></tr>
+<tr><td>IP number</td><td><form method="get" action="/config.cgi"><!--#ip--><input value="192.168.1.100" type="Text" name="ip"/></td>
+<td></td></tr>
+<tr><td>Subnet</td><td><!--#nm--><input value="255.255.255.0" type="Text" name="nm"/></td>
+<td></td></tr>
+<tr><td>Gateway</td><td><!--#gw--><input value="192.168.1.1" type="Text" name="gw"/></td>
+<td><input value="Set network" type="submit"></form></td></tr>
+<tr><td>DNS 1</td><td><form method="get" action="/config.cgi"><!--#dns1--><input value="8.8.8.8" type="Text" name="dns1"/></td>
+<td></td></tr>
+<tr><td>DNS 2</td><td><!--#dns2--><input value="8.8.4.4" type="Text" name="dns2"/></td>
+<td><input value="Set DNS" type="submit"></form></td></tr>
+<tr><td>MAC address</td><td><center><!--#mac-->00:00:00:00:00:00</center></td><td></td></tr>
+<tr><td></td><td><h2><center>System software</center></h2></td><td></td></tr>
+<tr><td>Version</td><td><center><!--#ver-->2.0.8</center></td><td></td></tr>
+</table>
+</div>
+</font>
+</center>
+<br>
+</body></html>

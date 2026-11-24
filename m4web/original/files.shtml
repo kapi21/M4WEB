@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+
+<style type="text/css">
+body
+{
+	font-family: 'cpc';
+}
+</style>
+
+	<title>M4 Board</title>
+	
+</head>
+
+<body bgcolor="navy">
+<center><font color="#ffffff"><h2>M4 Board</h2></font></center>
+
+<center>
+<div class="headers">
+<table>
+<td><a href="files.shtml" class="myButton">Files</a></td>
+<td><a href="roms.shtml" class="myButton">Roms</a></td>
+<td><a href="control.shtml" class="myButton">Control</a></td>
+<td><a href="settings.shtml" class="myButton">Settings</a></td>
+</table></div></center>
+
+<br>
+<center>
+<font color="#ffffff">
+<div class="container">
+<table>
+<tr><td><form enctype="multipart/form-data" action="files.shtml" method="POST"></td></tr>
+<tr><td><center><input name="upfile" type="file" /></center></td></tr>
+<tr><td><center><input type="submit" value="Upload" /></center></td></tr>
+<table>
+</form> 
+<font color="#ff0"></br>Upload files (drag and drop!)</br>
+
+<style>
+#holder { border: 2px solid #fff; width: 100&; min-height: 300px; margin: 20px auto;}
+#holder.hover { border: 2px dashed #ff0; }
+#holder img { display: block; margin: 10px auto; }
+#holder p { margin: 10px; font-size: 14px; }
+progress { width: 80%; }
+progress:after { content: '%'; }
+.fail { background: #c00; padding: 2px; color: #fff; }
+.hidden { display: none !important;}
+</style>
+<article>
+	
+	<div id="holder"></div> 
+	<p id="upload" class="hidden"><label>Drag &amp; drop not supported</p>
+	<p id="filereader">File API &amp; FileReader API not supported</p>
+	<p id="formdata">XHR2's FormData is not supported</p>
+</article>
+
+<script>
+	var currDir = '';
+	
+	var holder = document.getElementById('holder'),
+		tests = {
+			filereader: typeof FileReader != 'undefined',
+			dnd: 'draggable' in document.createElement('span'),
+			formdata: !!window.FormData,
+			
+		}, 
+		support = {
+			filereader: document.getElementById('filereader'),
+			formdata: document.getElementById('formdata'),
+			
+		},
+		
+		fileupload = document.getElementById('upload');
+
+"filereader formdata".split(' ').forEach(function (api) {
+	if (tests[api] === false) {
+		support[api].className = 'fail';
+	} else {
+		 support[api].className = 'hidden';
+	}
+});
+
+
+function readfiles(files) 
+{
+		for (var i = 0; i < files.length; i++) 
+		{
+			var formData = new FormData();
+			var fndir; 
+			
+			if ( currDir.endsWith(".dsk/") || currDir.endsWith(".DSK/") || currDir.endsWith(".cpr/") || currDir.endsWith(".CPR/") )
+			{
+				var noimg = currDir.substring(0, currDir.lastIndexOf('/'));
+				fndir = noimg.substring(0, noimg.lastIndexOf('/')+1);
+				
+			}
+			else
+				fndir = currDir;
+			
+			formData.append('file', files[i], fndir+files[i].name);
+		 	
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/', false);
+			xhr.send(formData);
+			holder.innerHTML += '<p>' + fndir+files[i].name + ' ' + (files[i].size ? (files[i].size/1024|0) + 'K uploaded.' : '');
+			console.log(files[i]);
+		}
+
+}
+
+	if (tests.dnd)
+	{ 
+		holder.ondragover = function () 
+		{	this.className = 'hover'; 
+			return false; 
+		};
+		holder.ondragend = function ()
+		{	this.className = '';
+			return false;
+		};
+		holder.ondrop = function (e) 
+		{
+			this.className = '';
+			e.preventDefault();
+			readfiles(e.dataTransfer.files);
+		}
+	}
+	
+
+</script>
+<form id="mkdForm" action="/config.cgi" method="get">Make Dir: <input type="text" name="mkdir" value=""><br><input type="submit" value="OK" onclick="AddCurrDir()"/></form> 
+<script>
+function AddCurrDir()
+{
+    document.getElementById("mkdForm").elements[0].value = currDir + document.getElementById("mkdForm").elements[0].value;
+}
+</script>
+
+
+<p id="directory"></p>
+<script>
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() 
+	{
+		if ( this.readyState == 4 )
+		{
+			if ( this.status == 200) 
+			{
+				var lines = this.responseText.split("\n");
+				
+				currDir = lines[0];
+				
+				// remove current directory
+				lines.splice( 0, 1 );	
+				var HTML;
+				HTML = 'Current directory:<br>'+currDir+'<br><br>';
+				lines.sort();
+				HTML += '<table width = \"100%\"><table><td width =\"60%\">Name</td><td width =\"10%\">Size</td><td width =\"10%\">Run</td><td width =\"20%\">Delete</td>';
+				
+				// cd on CPC
+				HTML +='<tr><td><a href=\"config.cgi?cd='+currDir.substring(0, currDir.lastIndexOf("/"))+'\">'+'[CD ON CPC]'+'</td>';
+				HTML +='<td></td>';
+				HTML +='<td></td>';
+				HTML +='<td></td></tr>';
+			
+				
+				// refresh current dir
+				
+				HTML +='<tr><td><a href=\"config.cgi?ls='+currDir.substring(0, currDir.lastIndexOf("/"))+'\">'+'[REFRESH]'+'</td>';
+				HTML +='<td></td>';
+				HTML +='<td></td>';
+				HTML +='<td></td></tr>';
+				
+				// previous dir
+				
+				
+				if ( currDir.length > 1)
+				{	var prevDir = currDir.substring(0, currDir.lastIndexOf("/")-1);
+					
+					HTML +='<tr><td><a href=\"config.cgi?ls='+prevDir.substring(0, prevDir.lastIndexOf("/"))+'\">'+'[BACK]'+'</td>';
+					HTML +='<td></td>';
+					HTML +='<td></td>';
+					HTML +='<td></td></tr>';
+				}
+			 	
+			 	// directories first
+				
+				for (j=0; j < lines.length; j++)
+				{
+					var entry = lines[j];
+					var nentry = entry.split(",");
+					var fndir = encodeURIComponent(currDir+nentry[0]);
+					if ( nentry[1] == '0' )
+					{	
+						HTML +='<tr><td><a href=\"config.cgi?ls='+fndir+'\">'+'['+nentry[0]+']'+'</td>';
+						HTML +='<td></td>';
+						HTML +='<td></td>';
+						HTML +='<td><a class=\"rB\" href=\"config.cgi?rm='+fndir+'\">'+'Delete'+'</td></tr>';
+					}
+				}
+				// dsk images next
+				
+				
+				for (j=0; j < lines.length; j++)
+				{
+					var entry = lines[j];
+					var nentry = entry.split(",");
+					var fndir = encodeURIComponent(currDir+nentry[0]);
+					if ( nentry[1] == '1' && ( fndir.endsWith(".dsk") || fndir.endsWith(".DSK") || fndir.endsWith(".cpr") || fndir.endsWith(".CPR")) )
+					{	HTML +='<tr><td><a href=\"config.cgi?ls='+fndir+'\">'+'['+nentry[0]+']'+'</td>';
+						HTML +='<td></td>';
+						HTML +='<td></td>';
+						HTML +='<td><a class=\"rB\" href=\"config.cgi?rm='+fndir+'\">'+'Delete'+'</td></tr>';
+					}
+				}
+				// files next
+				for (j=0; j < lines.length; j++)
+				{
+					var entry = lines[j];
+					var nentry = entry.split(",");
+					var fndir = encodeURIComponent(currDir+nentry[0]);
+					if ( nentry[1] == '1' && !( fndir.endsWith(".dsk") || fndir.endsWith(".DSK") || fndir.endsWith(".cpr") || fndir.endsWith(".CPR")) )
+					{	if ( (fndir.search(".dsk/") > 0) || (fndir.search(".DSK/") > 0) || (fndir.search(".cpr/") > 0) || (fndir.search(".CPR/") > 0) )
+							HTML += '<tr><td>'+nentry[0]+'</td>';
+						else
+							HTML += '<tr><td><a href=\"sd'+decodeURIComponent(fndir)+'\">'+nentry[0]+'</td>';
+						
+						HTML +='<td>'+nentry[2]+'</td>';
+						HTML +='<td><a class=\"rB\" href=\"config.cgi?run2='+fndir+'\">'+'Run'+'</td>';
+						HTML +='<td><a class=\"rB\" href=\"config.cgi?rm='+fndir+'\">'+'Delete'+'</td></tr>';
+					}
+				}
+				HTML +='</table></span></div';
+				directory.innerHTML += HTML;
+			}
+			else
+			{
+				xhttp.open("GET", "/config.cgi?ls=", false);
+				xhttp.send();
+				xhttp.open("GET", "/sd/m4/dir.txt", false);
+				xhttp.send();
+			}
+		}
+	};
+	xhttp.open("GET", "/sd/m4/dir.txt", true);
+	xhttp.send();
+}
+</script>
+</div>
+</font>
+</center>
+</body>
+</html>

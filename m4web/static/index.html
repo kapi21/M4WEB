@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>M4 Board — Web Proxy</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>M4 Board</h1>
+    <div class="status">
+      <span class="dot" id="dot"></span>
+      <span id="statusText">Comprobando…</span>
+    </div>
+  </header>
+
+  <div class="banner" id="banner"></div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="files">Files</button>
+    <button class="tab" data-tab="roms">Roms</button>
+    <button class="tab" data-tab="control">Control</button>
+    <button class="tab" data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <!-- FILES -->
+    <section class="panel active" id="panel-files">
+      <div class="toolbar">
+        <input type="file" id="fileInput" multiple />
+        <button class="btn" id="btnUpload">Upload</button>
+        <input type="text" id="mkdirName" placeholder="nueva carpeta" />
+        <button class="btn" id="btnMkdir">Make Dir</button>
+        <button class="btn" id="btnRefresh">Refresh</button>
+        <button class="btn" id="btnBack">Back</button>
+        <button class="btn" id="btnCdCpc">CD on CPC</button>
+      </div>
+      <div class="progress" id="upProgress"><span></span></div>
+      <div class="pathline" id="currPath">/</div>
+      <table class="list">
+        <thead>
+          <tr><th>Name</th><th>Size</th><th>Run</th><th>Delete</th></tr>
+        </thead>
+        <tbody id="fileBody"></tbody>
+      </table>
+      <div class="msg" id="filesMsg"></div>
+      <p class="hint">Arrastra ficheros a la tabla para subirlos al directorio actual.</p>
+    </section>
+
+    <!-- ROMS -->
+    <section class="panel" id="panel-roms">
+      <div class="grid2" id="romConfig">
+        <label>M4 ROM enabled</label>
+        <input type="checkbox" id="m4en" />
+        <button class="btn small" data-rom-set="m4_enabled">Set</button>
+
+        <label>Rom number</label>
+        <input type="number" id="m4rm" min="0" max="31" />
+        <button class="btn small" data-rom-set="m4_rom">Set</button>
+
+        <label>Romboard start</label>
+        <input type="number" id="m4rb" min="0" max="31" />
+        <button class="btn small" data-rom-set="romboard_start">Set</button>
+
+        <label>Lower-rom enabled</label>
+        <input type="checkbox" id="lwen" />
+        <button class="btn small" data-rom-set="lower_enabled">Set</button>
+
+        <label>Lower-rom slot</label>
+        <input type="number" id="lwsl" min="0" max="31" />
+        <button class="btn small" data-rom-set="lower_slot">Set</button>
+
+        <label>Only 16 slots</label>
+        <input type="checkbox" id="rs16" />
+        <button class="btn small" data-rom-set="only_16">Set</button>
+
+        <div class="span">Cartridge</div>
+        <input type="file" id="cartFile" />
+        <button class="btn small" id="btnCartUpload">Upload cart</button>
+      </div>
+
+      <h3 style="color:var(--yellow);margin-top:20px;">Rom board</h3>
+      <div class="toolbar">
+        <label>Slot <input type="number" id="romSlot" min="0" max="31" value="5" style="min-width:70px" /></label>
+        <input type="text" id="romSlotName" placeholder="nombre slot" />
+        <input type="file" id="romFile" />
+        <button class="btn" id="btnRomUpload">Upload ROM</button>
+        <button class="btn" id="btnRomsRefresh">Refresh</button>
+      </div>
+      <table class="list">
+        <thead><tr><th>Slot</th><th>Name</th><th></th></tr></thead>
+        <tbody id="romBody"></tbody>
+      </table>
+      <div class="msg" id="romsMsg"></div>
+    </section>
+
+    <!-- CONTROL -->
+    <section class="panel" id="panel-control">
+      <div class="control-stack">
+        <button class="btn danger" data-ctrl="m4_reset">M4 Reset</button>
+        <button class="btn danger" data-ctrl="cpc_reset">CPC Reset</button>
+        <button class="btn" data-ctrl="cpc_pause">CPC Pause</button>
+        <button class="btn" data-ctrl="hack_menu">Hack Menu</button>
+        <button class="btn" data-ctrl="start_cart">Start Cart</button>
+        <div class="control-row">
+          <button class="btn" id="btnCtrlRun">Run</button>
+          <input type="text" id="ctrlRunPath" placeholder="/programa.bas" />
+        </div>
+        <div class="control-row">
+          <button class="btn" id="btnCtrlCd">CD</button>
+          <input type="text" id="ctrlCdPath" placeholder="/" />
+        </div>
+      </div>
+      <div class="msg" id="controlMsg"></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="panel" id="panel-settings">
+      <div class="grid2">
+        <span>Time/Date</span><span id="setTime" class="hint"></span><span></span>
+        <span>Version</span><span id="setVer" class="hint"></span><span></span>
+        <span>MAC</span><span id="setMac" class="hint"></span><span></span>
+
+        <label>Timezone</label>
+        <input type="text" id="setZone" />
+        <button class="btn small" data-set="timezone">Set</button>
+
+        <label>NTP</label>
+        <input type="text" id="setNtp" />
+        <button class="btn small" data-set="ntp">Set</button>
+
+        <label>NetBIOS</label>
+        <input type="text" id="setName" />
+        <button class="btn small" data-set="netbios">Set</button>
+
+        <label>SSID</label>
+        <input type="text" id="setSsid" />
+        <span></span>
+
+        <label>Password</label>
+        <span>
+          <input type="password" id="setPw" />
+          <button type="button" class="btn small" id="btnTogglePw">Show</button>
+        </span>
+        <button class="btn small" data-set="wifi">Set AP</button>
+
+        <label>DHCP</label>
+        <input type="checkbox" id="setDhcp" />
+        <button class="btn small" data-set="dhcp">Set</button>
+
+        <label>IP</label>
+        <input type="text" id="setIp" />
+        <span></span>
+        <label>Subnet</label>
+        <input type="text" id="setNm" />
+        <span></span>
+        <label>Gateway</label>
+        <input type="text" id="setGw" />
+        <button class="btn small" data-set="network">Set network</button>
+
+        <label>DNS 1</label>
+        <input type="text" id="setDns1" />
+        <span></span>
+        <label>DNS 2</label>
+        <input type="text" id="setDns2" />
+        <button class="btn small" data-set="dns">Set DNS</button>
+      </div>
+      <div class="toolbar" style="margin-top:14px">
+        <button class="btn" id="btnSettingsReload">Reload</button>
+      </div>
+      <div class="msg" id="settingsMsg"></div>
+      <p class="hint">Cuidado al guardar WiFi/red: un mal valor puede dejarte sin acceso hasta arreglarlo desde el CPC.</p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

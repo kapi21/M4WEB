@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+
+<style type="text/css">
+body
+{
+	font-family: 'cpc';
+}
+</style>
+
+	<title>Control</title>
+	
+</head>
+
+<body bgcolor="navy">
+<center><font color="#ffffff"><h2>Control</h2></font></center>
+<center>
+<div class="headers">
+<table>
+<td><a href="files.shtml" class="myButton">Files</a></td>
+<td><a href="roms.shtml" class="myButton">Roms</a></td>
+<td><a href="control.shtml" class="myButton">Control</a></td>
+<td><a href="settings.shtml" class="myButton">Settings</a></td>
+</table></div></center>
+
+<br>
+<center>
+<font color="#ffffff">
+<div class="container">
+<table>
+<tr><td><center><form method="get" action="/config.cgi"><input name="mres" value="M4 Reset" type="submit"></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input name="cres" value="CPC Reset" type="submit"></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input name="chlt" value="CPC Pause" type="submit"></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input name="cnmi" value="Hack Menu" type="submit"></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input name="cctr" value="Start Cart" type="submit"></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input value="Run" type="submit"><input name="run" type="Text"/></form></center></td></tr>
+<tr><td><center><form method="get" action="/config.cgi"><input value="CD" type="submit"><input name="cd2" type="Text"/></form></center></td></tr>
+</table>
+</div>
+</font>
+</center>
+<br>
+</body></html>
