@@ -6,9 +6,12 @@ _Última actualización: 2026-11-24_
 Proxy local + UI mejorada de la web de la M4 Board (Amstrad CPC), listo para publicar en GitHub.
 
 ## Estado
-- Hecho: proyecto extraído de `M4/tools/m4web`; paquete `m4web`, launcher, README; `original/settings.shtml` sanitizado
-- Pendiente: crear repo en GitHub y primer push
+- Hecho: proyecto en GitHub; paquete `m4web`, launcher, README; settings original sanitizado
+- Pendiente: feedback de uso real / pulir UX
 - Bloqueos / dudas: ninguno
+
+## Repo
+https://github.com/kapi21/M4WEB
 
 ## Decisiones tomadas
 - Proyecto aparte (no acoplado a SINTAXIA)
@@ -32,4 +35,4 @@ curl http://127.0.0.1:8787/api/status
 - Subir a GitHub una captura no sanitizada de Settings con WiFi en claro
 
 ## Historial
-- 2026-11-24: creado proyecto M4WEB a partir del proxy del workspace M4
+- 2026-11-24: creado proyecto M4WEB; publicado en https://github.com/kapi21/M4WEB
