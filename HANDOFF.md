@@ -1,38 +1,38 @@
 # HANDOFF - M4WEB
 
-_Última actualización: 2026-11-24_
+_Última actualización: 2026-11-24 (cierre de sesión)_
 
 ## Objetivo
-Proxy local + UI mejorada de la web de la M4 Board (Amstrad CPC), listo para publicar en GitHub.
+Proxy local + UI mejorada de la web de la M4 Board (Amstrad CPC).
 
 ## Estado
-- Hecho: proyecto en GitHub; paquete `m4web`, launcher, README; settings original sanitizado
-- Pendiente: feedback de uso real / pulir UX
+- Hecho: v0.1 en GitHub (`master`); Files/Roms/Control/Settings; stdlib only; `original/` sanitizado
+- Pendiente: uso real → pulir UX / atajos (p. ej. subir BAS + Run)
 - Bloqueos / dudas: ninguno
 
 ## Repo
 https://github.com/kapi21/M4WEB
 
 ## Decisiones tomadas
-- Proyecto aparte (no acoplado a SINTAXIA)
-- Solo stdlib Python
-- Credenciales reales fuera del repo (placeholders en `original/`)
+- Proyecto aparte de SINTAXIA (no acoplado al server de aventura)
+- Fachada en PC; firmware M4 intacto
+- Look CPC azul/amarillo; password enmascarada en Settings
 
 ## Archivos y carpetas clave
-- `m4web/`: código y UI
-- `m4web.bat`: arranque en Windows
-- `README.md`: uso público
+- `m4web/m4_client.py`, `m4web/server.py`, `m4web/static/`
+- `m4web.bat` — arranque Windows
+- `docs/DESIGN.md` — arquitectura breve
 
 ## Cómo verificar / retomar
 ```bat
 cd "C:\@MIS PROYECTOS\M4WEB"
 set M4_HOST=http://192.168.1.128
-python -m m4web --no-browser
-curl http://127.0.0.1:8787/api/status
+m4web.bat
 ```
+Abrir `http://127.0.0.1:8787/` — status debe mostrar M4 OK.
 
 ## Riesgos
-- Subir a GitHub una captura no sanitizada de Settings con WiFi en claro
+- No subir capturas reales de Settings con WiFi en claro
 
 ## Historial
-- 2026-11-24: creado proyecto M4WEB; publicado en https://github.com/kapi21/M4WEB
+- 2026-11-24: creado y publicado https://github.com/kapi21/M4WEB; cierre de sesión
